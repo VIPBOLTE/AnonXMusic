@@ -5,7 +5,7 @@ from AnonXMusic import userbot
 from AnonXMusic.core.mongo import mongodb
 
 
-mongodb = lol.Character_catcher
+mongodb = mongodb.Character_catcher
 collection = mongodb.anime_characters_lol
 user_totals_collection = mongodb.user_totals_lmaoooo
 user_collection = mongodb.user_collection_lmaoooo
