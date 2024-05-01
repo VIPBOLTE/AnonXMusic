@@ -45,6 +45,15 @@ pause = {}
 playmode = {}
 playtype = {}
 skipmode = {}
+locks = {}
+message_counters = {}
+spam_counters = {}
+last_characters = {}
+sent_characters = {}
+first_correct_guesses = {}
+message_counts = {}
+
+
 
 
 async def get_assistant_number(chat_id: int) -> str:
