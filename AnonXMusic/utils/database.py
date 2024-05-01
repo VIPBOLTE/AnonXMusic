@@ -10,10 +10,16 @@ music_user_collection = music_db['user_data']
 # Add other collections as needed for music bot
 
 # MongoDB connection for harem bot
-harem_db = mongodb.lol
-harem_collection = harem_db['Character_catcher']
-harem_user_collection = harem_db['user_collection_lmaoooo']
 # Add other collections as needed for harem bot
+
+db = lol['Character_catcher']
+collection = db['anime_characters_lol']
+user_totals_collection = db['user_totals_lmaoooo']
+user_collection = db["user_collection_lmaoooo"]
+group_user_totals_collection = db['group_user_totalsssssss']
+top_global_groups_collection = db['top_global_groups']
+pm_users = db['total_pm_users']
+
 
 authdb = mongodb.adminauth
 authuserdb = mongodb.authuser
