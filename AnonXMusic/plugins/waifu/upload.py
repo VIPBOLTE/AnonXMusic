@@ -3,9 +3,8 @@ from pymongo import ReturnDocument
 
 from telegram import Update
 from telegram.ext import CommandHandler, CallbackContext
-
-from Sanatan import sudo_users, collection, db
-from AnonXMusic import application
+from AnonXMusic.utils.database import collection, db
+from AnonXMusic import application, sudo_users
 from config import LOGGER_ID, SUPPORT_CHAT
 
 WRONG_FORMAT_TEXT = """Wʀᴏɴɢ ❌ ғᴏʀᴍᴀᴛ...  ᴇɢ. /upload Iᴍɢ_ᴜʀʟ ᴍᴜᴢᴀɴ-ᴋɪʙᴜᴛsᴜɪɪ Dᴇᴍᴏɴ-sʟᴀʏᴇʀ 3
