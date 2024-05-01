@@ -1,4 +1,7 @@
 import logging
+from pyrogram import Client
+from telegram.ext import Application
+from motor.motor_asyncio import AsyncIOMotorClient
 
 logging.basicConfig(
     level=logging.INFO,
@@ -13,7 +16,7 @@ logging.basicConfig(
 logging.getLogger("httpx").setLevel(logging.ERROR)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("pytgcalls").setLevel(logging.ERROR)
-
-
-def LOGGER(name: str) -> logging.Logger:
-    return logging.getLogger(name)
+logging.getLogger("apscheduler").setLevel(logging.ERROR)
+logging.getLogger('httpx').setLevel(logging.WARNING)
+logging.getLogger("pyrate_limiter").setLevel(logging.ERROR)
+LOGGER = logging.getLogger(__name__)
