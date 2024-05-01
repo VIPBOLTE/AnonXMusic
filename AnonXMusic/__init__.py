@@ -14,6 +14,10 @@ heroku()
 app = Anony()
 userbot = Userbot()
 application = Application.builder().token(BOT_TOKEN).build()
+sudo_users = 12345
+
+
+
 
 from .platforms import *
 
