@@ -9,6 +9,8 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pymongo import MongoClient
 
 
+from Sanatan import collection, top_global_groups_collection, group_user_totals_collection, user_collection, user_totals_collection, Sanatan
+from config import application, SUPPORT_CHAT, SUPPORT_CHANNEL, db, LOGGER
 from config import BOT_TOKEN, MONGO_DB_URI
 # Initialize MongoDB client
 client = MongoClient("MONGO_DB_URI")
