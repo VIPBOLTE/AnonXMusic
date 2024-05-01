@@ -11,7 +11,7 @@ from pymongo import MongoClient
 
 from Sanatan.utils.database import collection, top_global_groups_collection, group_user_totals_collection, user_collection, user_totals_collection,db 
 from config import application,  Sanatan, LOGGER
-from config import BOT_TOKEN, MONGO_DB_URI, SUPPORT_CHANNEL, SUPPORT_CHAT
+from config import BOT_TOKEN, MONGO_DB_URI
 # Initialize MongoDB client
 client = MongoClient("MONGO_DB_URI")
 db = client["your_database"]
