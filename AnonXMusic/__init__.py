@@ -13,7 +13,7 @@ heroku()
 
 app = Anony()
 userbot = Userbot()
-
+application = Application.builder().token(BOT_TOKEN).build()
 
 from .platforms import *
 
