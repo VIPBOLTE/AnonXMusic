@@ -8,8 +8,10 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pymongo import MongoClient
 
+
+from config import BOT_TOKEN, MONGO_DB_URI
 # Initialize MongoDB client
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("MONGO_DB_URI")
 db = client["your_database"]
 collection = db["your_collection"]
 user_collection = db["user_collection"]
@@ -17,7 +19,7 @@ group_user_totals_collection = db["group_user_totals_collection"]
 top_global_groups_collection = db["top_global_groups_collection"]
 
 # Initialize bot and dispatcher
-bot = Bot(token="YOUR_TOKEN")
+bot = Bot(token="BOT_TOKEN")
 dp = Dispatcher(bot)
 
 locks = {}
