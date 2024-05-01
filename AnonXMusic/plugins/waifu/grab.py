@@ -10,7 +10,8 @@ from pymongo import MongoClient
 
 
 from AnonXMusic.utils.database import collection, top_global_groups_collection, group_user_totals_collection, user_collection, user_totals_collection,db 
-from AnonXMusic import application,  Anony, LOGGER
+from AnonXMusic import application, LOGGER
+from AnonXMusic.core.bot import Anony
 from config import BOT_TOKEN, MONGO_DB_URI
 # Initialize MongoDB client
 client = MongoClient("MONGO_DB_URI")
