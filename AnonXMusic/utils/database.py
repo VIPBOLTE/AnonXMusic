@@ -1,8 +1,19 @@
 import random
 from typing import Dict, List, Union
-
 from AnonXMusic import userbot
 from AnonXMusic.core.mongo import mongodb
+
+# MongoDB connection for music bot
+music_db = mongodb.music
+music_collection = music_db['music_data']
+music_user_collection = music_db['user_data']
+# Add other collections as needed for music bot
+
+# MongoDB connection for harem bot
+harem_db = mongodb.lol
+harem_collection = harem_db['Character_catcher']
+harem_user_collection = harem_db['user_collection_lmaoooo']
+# Add other collections as needed for harem bot
 
 authdb = mongodb.adminauth
 authuserdb = mongodb.authuser
@@ -565,82 +576,55 @@ async def get_gbanned() -> list:
     return results
 
 
-async def is_gbanned_user(user_id: int) -> bool:
+async def gbans_list() -> list:
+    results = []
+    async for user in gbansdb.find({"user_id": {"$gt": 0}}):
+        user_id = user["user_id"]
+        results.append(user_id)
+    return results
+
+
+async def is_gbanned(user_id: int) -> bool:
     user = await gbansdb.find_one({"user_id": user_id})
     if not user:
         return False
     return True
 
 
-async def add_gban_user(user_id: int):
-    is_gbanned = await is_gbanned_user(user_id)
-    if is_gbanned:
-        return
-    return await gbansdb.insert_one({"user_id": user_id})
+async def gbans_add(user_id: int):
+    if not await gbans_get(user_id):
+        await gbansdb.insert_one({"user_id": user_id})
 
 
-async def remove_gban_user(user_id: int):
-    is_gbanned = await is_gbanned_user(user_id)
-    if not is_gbanned:
-        return
-    return await gbansdb.delete_one({"user_id": user_id})
+async def gbans_remove(user_id: int):
+    if await gbans_get(user_id):
+        await gbansdb.delete_one({"user_id": user_id})
 
 
-async def get_sudoers() -> list:
-    sudoers = await sudoersdb.find_one({"sudo": "sudo"})
-    if not sudoers:
-        return []
-    return sudoers["sudoers"]
-
-
-async def add_sudo(user_id: int) -> bool:
-    sudoers = await get_sudoers()
-    sudoers.append(user_id)
-    await sudoersdb.update_one(
-        {"sudo": "sudo"}, {"$set": {"sudoers": sudoers}}, upsert=True
-    )
-    return True
-
-
-async def remove_sudo(user_id: int) -> bool:
-    sudoers = await get_sudoers()
-    sudoers.remove(user_id)
-    await sudoersdb.update_one(
-        {"sudo": "sudo"}, {"$set": {"sudoers": sudoers}}, upsert=True
-    )
-    return True
-
-
-async def get_banned_users() -> list:
-    results = []
-    async for user in blockeddb.find({"user_id": {"$gt": 0}}):
-        user_id = user["user_id"]
-        results.append(user_id)
-    return results
-
-
-async def get_banned_count() -> int:
-    users = blockeddb.find({"user_id": {"$gt": 0}})
-    users = await users.to_list(length=100000)
-    return len(users)
-
-
-async def is_banned_user(user_id: int) -> bool:
-    user = await blockeddb.find_one({"user_id": user_id})
+async def gbans_get(user_id: int):
+    user = await gbansdb.find_one({"user_id": user_id})
     if not user:
         return False
     return True
 
 
-async def add_banned_user(user_id: int):
-    is_gbanned = await is_banned_user(user_id)
-    if is_gbanned:
-        return
-    return await blockeddb.insert_one({"user_id": user_id})
+async def get_user(user_id: int) -> dict:
+    user = await usersdb.find_one({"user_id": user_id})
+    if not user:
+        return {}
+    return user
 
 
-async def remove_banned_user(user_id: int):
-    is_gbanned = await is_banned_user(user_id)
-    if not is_gbanned:
-        return
-    return await blockeddb.delete_one({"user_id": user_id})
+async def get_chat(chat_id: int) -> dict:
+    chat = await chatsdb.find_one({"chat_id": chat_id})
+    if not chat:
+        return {}
+    return chat
+
+
+async def chat_data(chat_id: int) -> dict:
+    return await get_chat(chat_id)
+
+
+async def user_data(user_id: int) -> dict:
+    return await get_user(user_id)
