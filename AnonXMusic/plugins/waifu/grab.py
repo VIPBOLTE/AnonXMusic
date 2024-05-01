@@ -9,7 +9,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pymongo import MongoClient
 
 
-from Sanatan import collection, top_global_groups_collection, group_user_totals_collection, user_collection, user_totals_collection, Sanatan
+from Sanatan.utils.database import collection, top_global_groups_collection, group_user_totals_collection, user_collection, user_totals_collection, Sanatan
 from config import application,  db, LOGGER
 from config import BOT_TOKEN, MONGO_DB_URI, SUPPORT_CHANNEL, SUPPORT_CHAT
 # Initialize MongoDB client
