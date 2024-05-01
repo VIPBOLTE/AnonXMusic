@@ -52,7 +52,8 @@ last_characters = {}
 sent_characters = {}
 first_correct_guesses = {}
 message_counts = {}
-
+last_user = {}
+warned_users = {}
 
 
 
